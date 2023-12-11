@@ -1,6 +1,22 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="content">
-
+<div class="container mx-auto mt-8 p-8 max-w-md bg-white rounded-md shadow-md">
+    <form method="post">
+        <h3 class="text-2xl font-bold mb-4">Enter The Chat Room</h3>
+        <!-- Input Name -->
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-600">Name:</label>
+            <input type="text" placeholder="Pick a name!" name="name" value=""
+                   class="mt-1 p-2 w-full border rounded-md">
+        </div>
+        <!-- Join a Room -->
+        <div class="mb-4">
+            <input type="text" placeholder="Room code" name="code" value=""
+                   class="mt-1 p-2 w-full border rounded-md">
+            <button type="submit" name="join" class="mt-2 bg-blue-500 text-white p-2 rounded-md">Join a Room</button>
+        </div>
+        <!-- Create a Room -->
+        <button type="submit" name="create" class="bg-green-500 text-white p-2 rounded-md">Create A Room</button>
+    </form>
 </div>
 {% endblock %}
