@@ -1,8 +1,13 @@
 {% extends "layout.html" %}
 {% block body %}
-<h3>Failure : {{ fail_string }}</h3>
-<h3>Registration failed.</h3>
-<form>
-    <input type="button" value="Go back!" onclick="history.back()">
-</form>
+<div class="container mx-auto mt-10 p-8 max-w-md bg-white shadow-md border-2 border-black">
+    <h3 class="text-l font-bold mb-4">Failure : {{ fail_string }}</h3>
+    <h3 class="text-l font-bold mb-4">Cannot join or create room.</h3>
+    <form method="post">
+        <button type="submit" name="back_button" value="1" class="w-full mt-2 bg-blue-500 text-white p-2 rounded-md">
+            Go back
+        </button>
+    </form>
+</div>
+
 {% endblock %}
