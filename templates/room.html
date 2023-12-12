@@ -1,3 +1,45 @@
 {% extends "layout.html" %}
 {% block body %}
+<div class="container mx-auto mt-10 flex border-2 border-black max-w-6xl   flex-col p-5 justify-around">
+    <div>
+        <h1 class="text-2xl font-bold mb-4 text-center">Chat Room: {{ room }}</h1>
+    </div>
+    <div  id="message_box" class="flex flex-col border-2 border-black p-2 h-96 bg-gray-200">
+        <div id="messages" class="w-full overflow-y-scroll flex-1">
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+            <p>sdadasdasd</p>
+
+        </div>
+    </div>
+    <div class="flex ">
+        <input type="text" class=" h-11 p-2  border rounded-md grow mr-10 " placeholder="message" name="message" id="message">
+        <button class="w-48 h-11 bg-blue-500 text-white p-2 rounded-md" name="send" id="send-btn" onclick="sendMessage()">
+            Send
+        </button>
+    </div>
+    
+</div>
+
+<script type="text/javascript">
+    var socketio = io()
+
+    const sendMessage = () => {
+        console.log("send");
+    }
+</script>
 {% endblock %}

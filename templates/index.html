@@ -1,27 +1,79 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="container mx-auto mt-8 p-8 max-w-md bg-white rounded-md shadow-md border-2 border-black">
-    <form method="post">
-        <h3 class="text-2xl font-bold mb-4">Enter The Chat Room</h3>
-        <!-- Input Name -->
-        <div class="mb-4">
-            <label class="mr-4 text-sm font-medium text-gray-600">Name:</label>
-            <input type="text" placeholder="Pick a name!" name="name" value=""
-                   class="mt-1 p-2  border rounded-md">
+<div class="container mx-auto mt-8 p-8 max-w-8xl bg-white rounded-md border-2 border-black flex
+             justify-around">
+
+
+
+
+    <!--Join Room div-->
+    <div class="flex flex-col justify-around">
+        <div>
+            <h3 class="text-2xl font-bold mb-4 text-center">Join a Chat Room</h3>
         </div>
-        <!-- Join a Room -->
-        <div class="mb-4">
-            <label class="mr-4 text-sm font-medium text-gray-600">Room :</label>
-            <input type="text" placeholder="Room code" name="code" value=""
-                   class="mt-1 p-2 mb-3  border rounded-md">
-            <button type="submit" name="join_button" class="w-full mt-2 bg-blue-500 text-white p-2 rounded-md"
-                    value="1">Join a Room
-            </button>
+        <div>
+            <form method="post">
+
+                <!-- Input Name -->
+                <div class="container mb-4">
+                    <label class="mr-4 text-sm font-medium text-gray-600">Name:</label>
+                    <input type="text" placeholder="Pick a name!" name="name" value=""
+                        class="mt-1 p-2  border rounded-md">
+                </div>
+
+                <div class="mb-4">
+                    <label class="mr-4 text-sm font-medium text-gray-600">Room :</label>
+                    <input type="text" placeholder="Room code" name="code" value=""
+                        class="mt-1 p-2 mb-3  border rounded-md">
+
+                </div>
+                <div>
+                    <button type="submit" name="join_button" class="w-full mt-2 bg-blue-500 text-white p-2 rounded-md"
+                        value="1">Join a Room
+                    </button>
+                </div>
+            </form>
         </div>
-        <!-- Create a Room -->
-        <button type="submit" name="create_button" class="bg-green-500 w-full text-white p-2 rounded-md" value="1">
-            Create A Room
-        </button>
-    </form>
+
+
+    </div>
+
+
+
+
+    <!--Create Room div-->
+        <div class="flex flex-col justify-around">
+        <div>
+            <h3 class="text-2xl font-bold mb-4 text-center">Create a Chat Room</h3>
+        </div>
+        <div>
+            <form method="post">
+
+                <!-- Input Name -->
+                <div class="container mb-4">
+                    <label class="mr-4 text-sm font-medium text-gray-600">Name:</label>
+                    <input type="text" placeholder="Pick a name!" name="name" value=""
+                        class="mt-1 p-2  border rounded-md">
+                </div>
+
+                <div class="mb-4">
+                    <label class="mr-4 text-sm font-medium text-gray-600">Room :</label>
+                    <input type="text" placeholder="Custom Room code" name="code" value=""
+                        class="mt-1 p-2 mb-3  border rounded-md">
+
+                </div>
+                <div>
+                    <button type="submit" name="create_button" class="w-full mt-2 bg-green-500 text-white p-2 rounded-md"
+                        value="1">Create a Room
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
 </div>
+
+
+
 {% endblock %}
