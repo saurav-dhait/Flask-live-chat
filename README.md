@@ -45,6 +45,7 @@ A simple Flask-based chat application designed for local area network (LAN) comm
     ```
 
 3. Run the app:
+   
    Remember to not use flask to run the python app because we are running the app through socketio library.
    Use the below method to simply run the _app.py_ file through python.
 
