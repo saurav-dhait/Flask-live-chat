@@ -69,7 +69,7 @@ A simple Flask-based chat application designed for local area network (LAN) comm
 ```
 ## Warning
 There are three things to be careful about - 
-1. A Room must be created before any one can join.
+1. A Room must be created before anyone can join.
 2. This server will run with [werkzeug](https://flask-socketio.readthedocs.io/en/latest/getting_started.html#initialization).
 3. Read about the potential dangers of  using externally visible server [here](https://flask.palletsprojects.com/en/3.0.x/quickstart/)
 
