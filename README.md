@@ -34,13 +34,13 @@ A simple Flask-based chat application designed for local area network (LAN) comm
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/your-flask-chat-app.git
+    git clone https://github.com/saurav-dhait/Flask-live-chat.git
     ```
 
 2. Install dependencies:
 
     ```bash
-    cd your-flask-chat-app
+    cd flask-chat-app-repository
     pip install -r requirements.txt
     ```
 
@@ -51,7 +51,7 @@ A simple Flask-based chat application designed for local area network (LAN) comm
     ```bash
     python app.py
     ```
-
+    After the above command the flask server will start.
     The app will be accessible at `http://localhost:5000` by default.
 
 ## Usage
@@ -68,9 +68,10 @@ A simple Flask-based chat application designed for local area network (LAN) comm
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True,host="0.0.0.0")
 ```
 ## Warning
-There are two things to be careful about - 
-1. This server will run with [werkzeug](https://flask-socketio.readthedocs.io/en/latest/getting_started.html#initialization).
-2. Read about the potential dangers of  using externally visible server [here](https://flask.palletsprojects.com/en/3.0.x/quickstart/)
+There are three things to be careful about - 
+1. A Room must be created before any one can join.
+2. This server will run with [werkzeug](https://flask-socketio.readthedocs.io/en/latest/getting_started.html#initialization).
+3. Read about the potential dangers of  using externally visible server [here](https://flask.palletsprojects.com/en/3.0.x/quickstart/)
 
 ## License
 
