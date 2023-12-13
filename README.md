@@ -61,13 +61,14 @@ A simple Flask-based chat application designed for local area network (LAN) comm
 ## LAN Configuration
 
 1. By default, The app runs in local host mode where it cannot be accessed by any other computer on the network.
-2. To Overcome this , add s small parameter in _socketio.run()_ function at the end of _app.py_ file as given below .
+2. To Overcome this , add a small parameter in _socketio.run()_ function at the end of _app.py_ file as given below .
 ```bash
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True,host="0.0.0.0")
 ```
 ## Warning
 There are two things to be careful about - 
-1. This server run with [werkzeug](https://flask-socketio.readthedocs.io/en/latest/getting_started.html#initialization).
+1. This server will run with [werkzeug](https://flask-socketio.readthedocs.io/en/latest/getting_started.html#initialization).
+2. Read about the potential dangers of  using externally visible server [here](https://flask.palletsprojects.com/en/3.0.x/quickstart/)
 
 ## License
 
