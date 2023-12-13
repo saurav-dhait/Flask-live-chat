@@ -1,5 +1,4 @@
-# Your Flask Chat App Name
-
+# Flask live chat (LAN)  
 
 
 hello everyone,
@@ -44,6 +43,8 @@ A simple Flask-based chat application designed for local area network (LAN) comm
     ```
 
 3. Run the app:
+   Remember to not use flask to run the python app because we are running the app through socketio library.
+   Use the below method to simply run the _app.py_ file through python.
 
     ```bash
     python app.py
@@ -57,11 +58,16 @@ A simple Flask-based chat application designed for local area network (LAN) comm
 2. Create a username and join the chat room.
 3. Start chatting with others on your local network.
 
-## Configuration
+## LAN Configuration
 
-
-
-
+1. By default, The app runs in local host mode where it cannot be accessed by any other computer on the network.
+2. To Overcome this , add s small parameter in _socketio.run()_ function at the end of _app.py_ file as given below .
+```bash
+    socketio.run(app, debug=True, allow_unsafe_werkzeug=True,host="0.0.0.0")
+```
+## Warning
+There are two things to be careful about - 
+1. This server run with [werkzeug](https://flask-socketio.readthedocs.io/en/latest/getting_started.html#initialization).
 
 ## License
 
