@@ -8,10 +8,11 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "hehe"
 socketio = SocketIO(app)
 
+# rooms dictionary stores information about a particular room code like member count and messages.
 rooms = {}
 
 
-# index page
+# index/landing page route
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -39,6 +40,7 @@ def index():
     return render_template("index.html")
 
 
+# Failure route is for displaying errors during usage of the web app
 @app.route("/failure", methods=["GET", "POST"])
 def failure():
     fail_string = request.args.get("error")
@@ -51,6 +53,7 @@ def failure():
     return render_template("failure.html", fail_string=fail_string)
 
 
+# room route renders the room page
 @app.route("/room", methods=["POST", "GET"])
 def room():
     room_code = session.get("room")
@@ -60,6 +63,10 @@ def room():
 
 
 def generate_room_code(n):
+    """
+    :param n: n is an integer
+    :return: Random combination of n upper case characters
+    """
     code = ""
     while True:
         for _ in range(n):
@@ -69,8 +76,12 @@ def generate_room_code(n):
     return code
 
 
+#
 @socketio.on("connect")
 def connect(auth):
+    """
+    connect function establishes the connection to room as soon as room page is rendered.
+    """
     room = session.get("room")
     name = session.get("name")
     if (not room) or (not name):
@@ -86,6 +97,10 @@ def connect(auth):
 
 @socketio.on("disconnect")
 def disconnect():
+    """
+    executes a number of operations as soon as client is disconnected
+
+    """
     room = session.get("room")
     name = session.get("name")
     leave_room(room)
@@ -99,6 +114,9 @@ def disconnect():
 
 @socketio.on("message")
 def message(data):
+    """
+    handles sending of messages to room
+    """
     room = session.get("room")
     name = session.get("name")
     if room not in rooms:
