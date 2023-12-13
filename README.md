@@ -19,7 +19,6 @@ A simple Flask-based chat application designed for local area network (LAN) comm
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Installation
@@ -61,7 +60,7 @@ A simple Flask-based chat application designed for local area network (LAN) comm
 2. Create a username and join the chat room.
 3. Start chatting with others on your local network.
 
-## LAN Configuration
+## Configuration
 
 1. By default, The app runs in local host mode where it cannot be accessed by any other computer on the network.
 2. To Overcome this , add a small parameter in _socketio.run()_ function at the end of _app.py_ file as given below .
