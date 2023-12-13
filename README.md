@@ -1,7 +1,9 @@
 # Flask live chat (LAN)  
 
 
-hello everyone,
+Hello Everyone,
+
+
 This is my first proper project over a github repository.
 A simple Flask-based chat application designed for local area network (LAN) communication.
 
