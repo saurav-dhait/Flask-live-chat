@@ -1,45 +1,55 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="container mx-auto mt-10 flex border-2 border-black max-w-6xl   flex-col p-5 justify-around">
+<div class="container mx-auto mt-10 flex border-2 border-black max-w-6xl custom-height flex-col p-5 justify-around">
     <div>
         <h1 class="text-2xl font-bold mb-4 text-center">Chat Room: {{ room }}</h1>
     </div>
-    <div  id="message_box" class="flex flex-col border-2 border-black p-2 h-96 bg-gray-200">
+    <div id="message_box" class="flex flex-col border-2 border-black p-2 h-96 bg-gray-200">
         <div id="messages" class="w-full overflow-y-scroll flex-1">
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
-            <p>sdadasdasd</p>
+
 
         </div>
     </div>
     <div class="flex ">
-        <input type="text" class=" h-11 p-2  border rounded-md grow mr-10 " placeholder="message" name="message" id="message">
-        <button class="w-48 h-11 bg-blue-500 text-white p-2 rounded-md" name="send" id="send-btn" onclick="sendMessage()">
+        <input type="text" class=" h-11 p-2 border border-gray-500 rounded-md grow mr-10 " placeholder="message"
+            name="message" id="message_input">
+        <button class="w-48 h-11 bg-blue-500 text-white p-2 rounded-md" name="send" id="send-btn"
+            onclick="sendMessage()">
             Send
         </button>
     </div>
-    
+
 </div>
 
 <script type="text/javascript">
     var socketio = io()
-
+    const message = document.getElementById("messages")
+    const create_message = (name, msg) => {
+        const content = `
+    <div>
+    <span> 
+        <strong>${name}</strong>: ${msg}
+    </span>    
+    <span>
+        ${new Date().toLocaleString()}
+    </span>
+    </div>
+    `
+    message.innerHTML += content
+    }
+    socketio.on("message",(data)=>{
+        create_message(data.name,data.message)
+    })
     const sendMessage = () => {
-        console.log("send");
+        const message = document.getElementById("message_input")
+        if (message.value == "" )return
+        socketio.emit("message",{data:message.value})
+        message.value = ""
     }
 </script>
+{% for msg in messages %}
+<script type="text/javascript">
+    create_message("{{msg.name}}","{{msg.message}}")
+</script>
+{% endfor %}
 {% endblock %}

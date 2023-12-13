@@ -26,7 +26,7 @@ def index():
             return redirect(url_for("failure", error="Code not provided."))
 
         room_code = code
-        print("ffff")
+
         if create_button == "1":
             room_code = generate_room_code(4)
             rooms[room_code] = {"members": 0, "messages": []}
@@ -54,9 +54,9 @@ def failure():
 @app.route("/room", methods=["POST", "GET"])
 def room():
     room_code = session.get("room")
-    # if room_code is None or session.get("name") is None or room_code not in rooms:
-    #     return redirect(url_for("failure", error="Room Credentials missing."))
-    return render_template("room.html")
+    if room_code is None or session.get("name") is None or room_code not in rooms:
+        return redirect(url_for("failure", error="Room Credentials missing."))
+    return render_template("room.html", room=room_code, messages=rooms[room_code]["messages"])
 
 
 def generate_room_code(n):
@@ -67,6 +67,49 @@ def generate_room_code(n):
         if code not in rooms:
             break
     return code
+
+
+@socketio.on("connect")
+def connect(auth):
+    room = session.get("room")
+    name = session.get("name")
+    if (not room) or (not name):
+        return redirect(url_for("failure", error="Room Credentials missing."))
+    if room not in rooms:
+        leave_room(room)
+        return
+    join_room(room)
+    send({"name": name, "message": "has entered the chat."}, to=room)
+    rooms[room]["members"] += 1
+    print(f"{name} joined room {room}.")
+
+
+@socketio.on("disconnect")
+def disconnect():
+    room = session.get("room")
+    name = session.get("name")
+    leave_room(room)
+    if room in rooms:
+        rooms[room]["members"] -= 1
+        if rooms[room]["members"] <= 0:
+            del rooms[room]
+    send({"name": name, "message": "has left the chat."}, to=room)
+    print(f"{name} has left room {room}.")
+
+
+@socketio.on("message")
+def message(data):
+    room = session.get("room")
+    name = session.get("name")
+    if room not in rooms:
+        return
+    content = {
+        "name": name,
+        "message": data["data"]
+    }
+    send(content, to=room)
+    rooms[room]["messages"].append(content)
+    print(f"{name} said : {data['data']}.")
 
 
 # run server
